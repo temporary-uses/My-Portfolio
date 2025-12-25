@@ -1,8 +1,8 @@
-package com.example.Email.Management.Project.service;
+package com.example.Email.Management.Projectt.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.Email.Management.Project.dto.ContactFormDTO;
+import com.example.Email.Management.Projectt.dto.ContactFormDTO;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;

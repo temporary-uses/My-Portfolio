@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.example.Email.Management.Project.dto;
+package com.example.Email.Management.Projectt.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

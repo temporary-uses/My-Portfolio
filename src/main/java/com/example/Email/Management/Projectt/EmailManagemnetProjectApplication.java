@@ -1,4 +1,5 @@
-package com.example.Email.Management.Project;
+package com.example.Email.Management.Projectt;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
