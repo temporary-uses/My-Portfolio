@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "https://my-portfolio-293.pages.dev/")
+@CrossOrigin(origins = "https://my-portfolio-293.pages.dev")
 public class ContactController {
 	
 	private final EmailServiceLogic emailservice; // 1. Declare the Service Tool
