@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender; // this is the original logic for this project 
 
-import jakarta.mail.MailSessionDefinition;
-import jakarta.mail.MailSessionDefinitions;
 
 //@MailSessionDefinition
 //@MailSessionDefinitions
