@@ -3,6 +3,7 @@ package com.example.Email.Management.Projectt.service;
 import org.springframework.stereotype.Service;
 
 import com.example.Email.Management.Projectt.dto.ContactFormDTO;
+import com.resend.Resend;
 
 import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.mail.SimpleMailMessage;
@@ -15,16 +16,16 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class EmailServiceLogic{
 	
-	private final JavaMailSender javamailsender;
+	private final Resend resend;
 	
 	@Value("${spring.mail.username}") // We add this to easily get your 'FROM' email from application.properties
 	private String senderEmail;
 	
 	// 2. THE FIX: Constructor Injection
     // This method sets the final field, solving the error.
-    public EmailServiceLogic(JavaMailSender javaMailSender) {
+    public EmailServiceLogic(Resend rEsend) {
         // We assign the object received from Spring to your field.
-        this.javamailsender = javaMailSender; 
+        this.resend = rEsend; 
     }
     
     public void sendContactEmail(ContactFormDTO data) {
@@ -38,7 +39,7 @@ public class EmailServiceLogic{
     	message.setSubject(subject);
     	
     	String body = String.format(
-    			"Sender Name : %s \n Sender Email : %s  \n Message : %s",
+    			" -: New Contact / Contract Message :- \n Sender Name : %s \n Sender Email : %s  \n Message : %s",
     			data.getName(),
     			data.getEmail(),
     			data.getMessage()
