@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import com.example.Email.Management.Projectt.dto.ContactFormDTO;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender; // this is the original logic for this project 
+//import org.springframework.mail.SimpleMailMessage;
+//import org.springframework.mail.javamail.JavaMailSender; // this is the original logic for this project 
 
 
 //@MailSessionDefinition
