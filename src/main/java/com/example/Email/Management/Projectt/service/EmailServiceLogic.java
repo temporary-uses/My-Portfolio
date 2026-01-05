@@ -6,8 +6,9 @@ import com.example.Email.Management.Projectt.dto.ContactFormDTO;
 import com.resend.Resend;
 
 import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.mail.SimpleMailMessage;
-//import org.springframework.mail.javamail.JavaMailSender; // this is the original logic for this project 
+import com.resend.services.emails.model.SendEmailRequest;
+
+// this is the original logic for this project 
 
 
 //@MailSessionDefinition
@@ -18,8 +19,8 @@ public class EmailServiceLogic{
 	
 	private final Resend resend;
 	
-	@Value("${spring.mail.username}") // We add this to easily get your 'FROM' email from application.properties
-	private String senderEmail;
+	@Value("${RESEND_API_KEY}") // We add this to easily get your 'FROM' email from application.properties
+	private String apikey;
 	
 	// 2. THE FIX: Constructor Injection
     // This method sets the final field, solving the error.
@@ -29,24 +30,31 @@ public class EmailServiceLogic{
     }
     
     public void sendContactEmail(ContactFormDTO data) {
-    	SimpleMailMessage message = new SimpleMailMessage();
+    	SendEmailRequest message = SendEmailRequest.builder(); // ' SimpleMailMessage ' comes from spring boot but ' CreateEmailOptions ' comes from the service provider 
     	
-    	message.setFrom(senderEmail);
+    	message.from(apikey);
     	
-    	message.setTo("nandasanskar2233@gmail.com");
+    	message.To("nandasanskar2233@gmail.com");
     	
     	String subject = String.format(" New Work : %s ", data.getSubject());
-    	message.setSubject(subject);
+    	message.Subject(subject);
     	
     	String body = String.format(
-    			" -: New Contact / Contract Message :- \n Sender Name : %s \n Sender Email : %s  \n Message : %s",
+    			"""
+                <h2>New Contact Message</h2>
+                <p><strong>Name:</strong> %s</p>
+                <p><strong>Email:</strong> %s</p>
+                <p><strong>Message:</strong></p>
+                <p>%s</p>
+            """,
     			data.getName(),
     			data.getEmail(),
     			data.getMessage()
     			);
-    	message.setText(body);
+    	message.html(body);
     	// 3e. Dispatch the email using the final field
-        this.javamailsender.send(message); // Now you can use the tool!
+    	message.build();
+    	resend.emails().send(body); // Now you can use the tool!
 	}
     
 }
