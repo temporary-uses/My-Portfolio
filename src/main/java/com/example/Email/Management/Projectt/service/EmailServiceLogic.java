@@ -54,7 +54,7 @@ public class EmailServiceLogic{
 
     	.from("onboarding@resend.dev")
     	
-    	.to("nandasanskar2233@gmail.com")
+    	.to("teambca2023@gmail.com")
     	
     	.subject(subject)
     	
