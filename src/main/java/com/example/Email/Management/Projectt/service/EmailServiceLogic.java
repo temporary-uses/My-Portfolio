@@ -4,9 +4,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.Email.Management.Projectt.dto.ContactFormDTO;
 import com.resend.Resend;
+import com.resend.core.exception.ResendException;
 
 import org.springframework.beans.factory.annotation.Value;
-import com.resend.services.emails.model.SendEmailRequest;
+import com.resend.services.emails.model.CreateEmailOptions;
 
 // this is the original logic for this project 
 
@@ -29,16 +30,9 @@ public class EmailServiceLogic{
         this.resend = rEsend; 
     }
     
+    
+    
     public void sendContactEmail(ContactFormDTO data) {
-    	SendEmailRequest message = SendEmailRequest.builder(); // ' SimpleMailMessage ' comes from spring boot but ' CreateEmailOptions ' comes from the service provider 
-    	
-    	message.from(apikey);
-    	
-    	message.To("nandasanskar2233@gmail.com");
-    	
-    	String subject = String.format(" New Work : %s ", data.getSubject());
-    	message.Subject(subject);
-    	
     	String body = String.format(
     			"""
                 <h2>New Contact Message</h2>
@@ -51,10 +45,28 @@ public class EmailServiceLogic{
     			data.getEmail(),
     			data.getMessage()
     			);
-    	message.html(body);
+    	
+    	String subject = String.format(" New Work : %s ", data.getSubject());
+    	
+    	
+    	
+    	CreateEmailOptions emailOptions = CreateEmailOptions.builder()
+
+    	.from("Portfolio <onboarding@resend.dev>")
+    	
+    	.to("gtfrhfth3434533@gmail.com")
+    	
+    	.subject(subject)
+    	
+    	.html(body)
+    	
     	// 3e. Dispatch the email using the final field
-    	message.build();
-    	resend.emails().send(body); // Now you can use the tool!
+    	.build();
+    	try {
+    	resend.emails().send(emailOptions); // Now you can use the tool!
+    	} catch (ResendException ex) {
+    		throw new RuntimeException("Failed to send Email", ex);
+    	}
 	}
     
 }
