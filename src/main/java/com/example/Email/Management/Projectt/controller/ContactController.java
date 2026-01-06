@@ -9,11 +9,16 @@ import com.example.Email.Management.Projectt.dto.ContactFormDTO;
 import com.example.Email.Management.Projectt.service.EmailServiceLogic;
 
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "https://my-portfolio-293.pages.dev")
+@CrossOrigin(
+		  origins = "https://my-portfolio-293.pages.dev",
+		  methods = {RequestMethod.POST, RequestMethod.OPTIONS}
+		)
 public class ContactController {
 	
 	private final EmailServiceLogic emailservice; // 1. Declare the Service Tool
