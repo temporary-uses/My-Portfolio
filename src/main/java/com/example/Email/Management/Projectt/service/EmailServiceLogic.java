@@ -52,7 +52,7 @@ public class EmailServiceLogic{
     	
     	CreateEmailOptions emailOptions = CreateEmailOptions.builder()
 
-    	.from("Portfolio <onboarding@resend.dev>")
+    	.from("onboarding@resend.dev")
     	
     	.to("nandasanskar2233@gmail.com")
     	
